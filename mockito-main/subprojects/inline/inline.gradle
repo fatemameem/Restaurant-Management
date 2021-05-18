@@ -1,0 +1,20 @@
+description = "Mockito preconfigured inline mock maker (intermediate and to be superseeded by automatic usage in a future version)"
+
+apply from: "$rootDir/gradle/java-library.gradle"
+
+dependencies {
+    compile project.rootProject
+    testCompile libraries.junit4
+}
+
+tasks.javadoc.enabled = false
+
+//required by the "StressTest.java" and "OneLinerStubStressTest.java"
+test.maxHeapSize = "256m"
+retryTest.maxHeapSize = "256m"
+
+if (JavaVersion.current().java9Compatible) {
+    test {
+        jvmArgs '--illegal-access=deny'
+    }
+}

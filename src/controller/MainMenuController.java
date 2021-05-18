@@ -152,7 +152,7 @@ public class MainMenuController implements Initializable {
     }
 
     public void onLogout(Event e) throws IOException {
-        URL url = new File("E:\\Codes\\project\\Restaurant-Management\\src\\view\\Login.fxml").toURI().toURL();
+        URL url = new File("E:\\Codes\\project\\Restaurant-Management-master\\src\\view\\Login.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

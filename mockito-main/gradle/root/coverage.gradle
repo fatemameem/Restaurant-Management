@@ -1,0 +1,55 @@
+task mockitoCoverage(type: JacocoReport) {
+
+    allprojects { currentProject ->
+        // These tests do not have a `test` task.
+        if (currentProject.name in ['android']) {
+            return
+        }
+        // We only run these tests on Java 9+
+        if (currentProject.name in ['module-test'] && !JavaVersion.current().isJava9Compatible()) {
+            return
+        }
+        // We only run these tests on Java 8
+        if (currentProject.name in ['errorprone'] && JavaVersion.current().isJava9Compatible()) {
+            return
+        }
+        plugins.withId("java") {
+            mockitoCoverage.sourceSets currentProject.sourceSets.main
+
+            apply plugin: "jacoco"
+
+            jacoco {
+                toolVersion = '0.8.6'
+
+                if (currentProject != rootProject) {   //already automatically enhanced in mockito main project as "java" plugin was applied before
+                    applyTo test
+                }
+                test.jacoco.destinationFile = file("${currentProject.buildDir}/jacoco/test.exec")
+            }
+
+            mockitoCoverage.executionData(files(test.jacoco.destinationFile).builtBy(test))
+        }
+    }
+
+    reports {
+        xml.enabled true
+        html.enabled true
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+
+    doFirst {
+        classDirectories.from = classDirectories.files.collect {
+            fileTree(
+                dir: it,
+                exclude: ['**/org/mockito/internal/util/concurrent/**']
+            )
+        }
+        executionData.from = executionData.files.findAll { it.exists() }
+    }
+
+    doLast {
+        logger.lifecycle "Jacoco HTML created: file://${new File(reports.html.destination, "index.html").toURI().path}"
+    }
+}
+
+task coverageReport(dependsOn: ["mockitoCoverage"]) {}

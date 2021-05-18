@@ -1,0 +1,38 @@
+apply plugin: "java"
+
+group = 'org.mockito'
+
+if (!archivesBaseName.startsWith("mockito-")) {
+    archivesBaseName = "mockito-" + project.name
+}
+
+apply from: "$rootDir/gradle/java-publication.gradle"
+
+generatePomFileForJavaLibraryPublication.doLast {
+    //validates the the pom has correct artifact id to avoid issues like #1444
+    def pom = new XmlSlurper().parse(destination)
+    assert pom.artifactId == archivesBaseName
+    assert pom.name == archivesBaseName
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+test {
+    include "**/*Test.class"
+
+    testLogging {
+        exceptionFormat 'full'
+        showCauses true
+    }
+}
+
+apply from: "$rootDir/gradle/retry-test.gradle"
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+        html.stylesheet resources.text.fromFile("$rootDir/config/checkstyle/checkstyle.xsl")
+    }
+}

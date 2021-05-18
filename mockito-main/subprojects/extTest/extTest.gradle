@@ -1,0 +1,29 @@
+apply from: "$rootDir/gradle/dependencies.gradle"
+
+apply plugin: 'java'
+description = "End-to-end tests for Mockito and its extensions."
+
+repositories {
+    mavenLocal() //we depend on locally published mockito
+}
+
+dependencies {
+    testCompile project.rootProject
+    testCompile project(":junit-jupiter")
+    testCompile project(path: ':', configuration: 'testUtil')
+    testCompile libraries.junit4
+    testCompile libraries.assertj
+    testCompile libraries.junitJupiterApi
+    testRuntime libraries.junitJupiterEngine
+    testRuntime libraries.junitVintageEngine
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
+
+configurations.all {
+    //TODO SF enable when #154 is implemented
+    //let's make those tests not use hamcrest
+    //exclude group: 'org.hamcrest', module: 'hamcrest-core'
+}

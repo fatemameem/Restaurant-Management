@@ -1,0 +1,141 @@
+buildscript {
+    repositories {
+        mavenLocal() //for local testing of mockito-release-tools
+        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+
+    dependencies {
+        classpath 'gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.14.0'
+        classpath 'net.ltgt.gradle:gradle-errorprone-plugin:2.0.1'
+
+        classpath "io.github.gradle-nexus:publish-plugin:1.1.0"
+        classpath 'org.shipkit:shipkit-changelog:1.1.15'
+        classpath 'org.shipkit:shipkit-auto-version:1.1.11'
+
+        classpath 'com.google.googlejavaformat:google-java-format:1.10.0'
+    }
+}
+
+plugins {
+    id 'com.diffplug.gradle.spotless' version '4.5.1'
+    id 'eclipse'
+    id 'com.github.ben-manes.versions' version '0.38.0'
+    id 'biz.aQute.bnd.builder' version '5.3.0'
+    id 'ru.vyarus.animalsniffer' version '1.5.2'
+}
+
+description = 'Mockito mock objects library core API and implementation'
+
+apply plugin: 'base'
+archivesBaseName = 'mockito-core'
+
+apply from: 'gradle/shipkit.gradle'
+
+apply from: 'gradle/root/ide.gradle'
+apply from: 'gradle/root/gradle-fix.gradle'
+apply from: 'gradle/java-library.gradle'
+apply from: 'gradle/license.gradle'
+apply from: 'gradle/root/coverage.gradle'
+
+apply from: 'gradle/mockito-core/inline-mock.gradle'
+apply from: 'gradle/mockito-core/osgi.gradle'
+apply from: 'gradle/mockito-core/javadoc.gradle'
+apply from: 'gradle/mockito-core/testing.gradle'
+
+apply from: 'gradle/dependencies.gradle'
+
+allprojects { proj ->
+    repositories {
+        mavenCentral()
+    }
+    plugins.withId('java') {
+        proj.apply from: "$rootDir/gradle/errorprone.gradle"
+    }
+    tasks.withType(JavaCompile) {
+        //I don't believe those warnings add value given modern IDEs
+        options.warnings = false
+        options.encoding = 'UTF-8'
+    }
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+        options.addStringOption('charSet', 'UTF-8')
+        options.setSource('8')
+    }
+
+    tasks.withType(AbstractArchiveTask) {
+        preserveFileTimestamps = false
+        reproducibleFileOrder = true
+    }
+
+    apply plugin: 'checkstyle'
+    checkstyle {
+       configFile = rootProject.file('config/checkstyle/checkstyle.xml')
+    }
+}
+
+configurations {
+    testUtil //TODO move to separate project
+}
+
+dependencies {
+    compile libraries.bytebuddy, libraries.bytebuddyagent
+
+    compileOnly libraries.junit4, libraries.hamcrest, libraries.opentest4j
+    compile libraries.objenesis
+
+    testCompile libraries.assertj
+
+    //putting 'provided' dependencies on test compile and runtime classpath
+    testCompileOnly configurations.compileOnly
+    testRuntime configurations.compileOnly
+
+    testUtil sourceSets.test.output
+
+    signature 'org.codehaus.mojo.signature:java18:1.0@signature'
+    signature 'net.sf.androidscents.signature:android-api-level-24:7.0_r2@signature'
+}
+
+animalsniffer {
+    sourceSets = [sourceSets.main]
+    annotation = 'org.mockito.internal.SuppressSignatureCheck'
+}
+
+spotless {
+    // We run the check separately on CI, so don't run this by default
+    enforceCheck = false
+
+    java {
+        licenseHeaderFile rootProject.file('config/spotless/spotless.header')
+
+        customLazyGroovy('google-java-format') {
+            com.google.googlejavaformat.java.JavaFormatterOptions options = new com.google.googlejavaformat.java.JavaFormatterOptions.Builder()
+                    .style(com.google.googlejavaformat.java.JavaFormatterOptions.Style.AOSP)
+                    .formatJavadoc(false)
+                    .build()
+            com.google.googlejavaformat.java.Formatter formatter = new com.google.googlejavaformat.java.Formatter(options)
+            return { source -> formatter.formatSource(source) }
+        }
+
+        // This test contains emulation of same-line stubbings. The formatter would put them on a separate line.
+        targetExclude 'src/test/java/org/mockitousage/internal/junit/UnusedStubbingsFinderTest.java'
+    }
+}
+
+
+//workaround for #1444, delete when Shipkit bug is fixed
+subprojects {
+	eclipse {
+		project {
+			name = rootProject.name + '-' + project.name
+		}
+	}
+
+    afterEvaluate {
+        def lib = publishing.publications.javaLibrary
+        if(lib && !lib.artifactId.startsWith("mockito-")) {
+            lib.artifactId = "mockito-" + lib.artifactId
+        }
+    }
+}
+//end workaround

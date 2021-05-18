@@ -1,0 +1,17 @@
+plugins {
+    // Can not use libraries.kotlin.version here per https://stackoverflow.com/questions/37555196/in-gradle-how-to-use-a-variable-for-a-plugin-version
+    id 'org.jetbrains.kotlin.jvm' version '1.5.0'
+    id 'java'
+}
+
+description = "Kotlin tests for Mockito."
+
+apply from: "$rootDir/gradle/dependencies.gradle"
+
+dependencies {
+    testCompile project(":")
+    testCompile libraries.junit4
+
+    testCompile libraries.kotlin.stdlib
+    testCompile libraries.kotlin.coroutines
+}
