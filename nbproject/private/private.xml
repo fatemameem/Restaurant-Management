@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Codes/project/Restaurant-Management-master/src/controller/MainMenuController.java</file>
+            <file>file:/E:/Codes/project/Restaurant-Management-master/test/controller/LoginControllerTest.java</file>
+            <file>file:/E:/Codes/project/Restaurant-Management-master/test/model/MealsTest.java</file>
+            <file>file:/E:/Codes/project/Restaurant-Management-master/src/controller/EditController.java</file>
+            <file>file:/E:/Codes/project/Restaurant-Management-master/test/model/DBTest.java</file>
+            <file>file:/E:/Codes/project/Restaurant-Management-master/test/model/RestaurantTest.java</file>
             <file>file:/E:/Codes/project/Restaurant-Management-master/src/model/Restaurant.java</file>
+            <file>file:/E:/Codes/project/Restaurant-Management-master/test/model/DrinksTest.java</file>
+            <file>file:/E:/Codes/project/Restaurant-Management-master/test/controller/EditControllerTest.java</file>
+            <file>file:/E:/Codes/project/Restaurant-Management-master/test/controller/MainMenuControllerTest.java</file>
         </group>
     </open-files>
 </project-private>

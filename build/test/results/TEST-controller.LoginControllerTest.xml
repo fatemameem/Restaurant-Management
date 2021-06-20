@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Enie" name="controller.LoginControllerTest" skipped="0" tests="3" time="0.133" timestamp="2021-05-18T15:56:44">
+<testsuite errors="0" failures="0" hostname="Enie" name="controller.LoginControllerTest" skipped="0" tests="3" time="0.284" timestamp="2021-05-18T16:52:20">
   <properties>
     <property name="libs.spring-framework300.classpath" value="C:\Program Files\NetBeans-12.3\netbeans\platform\modules\org-apache-commons-logging.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\cglib-2.2.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-aop-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-aspects-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-beans-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-context-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-context-support-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-core-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-expression-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-instrument-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-instrument-tomcat-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-jdbc-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-jms-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-orm-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-oxm-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-struts-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-test-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-tx-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-web-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-webmvc-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.3\netbeans\java\modules\ext\spring-3.0\spring-webmvc-portlet-3.2.18.RELEASE.jar" />
     <property name="javac.test.classpath" value="D:\Install files\mysql-connector-java-8.0.16.jar:C:\Users\HP\Downloads\Compressed\TestFX-master:build/classes:C:\Program Files\NetBeans-12.3\netbeans\platform\modules\ext\junit-jupiter-api-5.6.0.jar;C:\Program Files\NetBeans-12.3\netbeans\platform\modules\ext\junit-jupiter-params-5.6.0.jar;C:\Program Files\NetBeans-12.3\netbeans\platform\modules\ext\junit-jupiter-engine-5.6.0.jar:C:\Users\HP\Downloads\Compressed\TestFX-master:C:\Program Files\NetBeans-12.3\netbeans\platform\modules\ext\junit-4.13.1.jar:C:\Program Files\NetBeans-12.3\netbeans\platform\modules\ext\hamcrest-core-1.3.jar:mockito-main:mockito-all-1.9.5.jar:byte-buddy-1.7.9.jar:byte-buddy-agent-1.7.9.jar:mockito-core-2.15.0.jar:objenesis-2.6.jar" />
@@ -23,7 +23,7 @@
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="platform.home" value="C:\Program Files\Java\jdk-10.0.2" />
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-10.0.2\bin" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner controller.LoginControllerTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,E:\Codes\project\Restaurant-Management-master\build\test\results\TEST-controller.LoginControllerTest.xml crashfile=E:\Codes\project\Restaurant-Management-master\build\junitvmwatcher2510574009818672010.properties propsfile=E:\Codes\project\Restaurant-Management-master\build\junit8411887139171926316.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner controller.LoginControllerTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,E:\Codes\project\Restaurant-Management-master\build\test\results\TEST-controller.LoginControllerTest.xml crashfile=E:\Codes\project\Restaurant-Management-master\build\junitvmwatcher9283502415634027297.properties propsfile=E:\Codes\project\Restaurant-Management-master\build\junit8518512191100679025.properties" />
     <property name="jdk.debug" value="release" />
     <property name="javafx.enable.concurrent.external.runs" value="false" />
     <property name="libs.spring-framework300.src" value="" />
@@ -236,7 +236,7 @@
     <property name="platforms.JDK_1.8.compiler" value="modern" />
     <property name="platforms.JDK_9.home" value="D:\Install files\jdk\jdk-9" />
     <property name="libs.javaee-api-6.0.classpath" value="C:\Program Files\NetBeans-12.3\netbeans\enterprise\modules\ext\javaee-api-6.0.jar" />
-    <property name="javac.includesfile.binary" value="E:\Codes\project\Restaurant-Management-master\null680556862" />
+    <property name="javac.includesfile.binary" value="E:\Codes\project\Restaurant-Management-master\null74484153" />
     <property name="libs.javaee-api-7.0.classpath" value="C:\Program Files\NetBeans-12.3\netbeans\enterprise\modules\ext\javaee-api-7.0.jar" />
     <property name="javafx.run.as" value="standalone" />
     <property name="sun.cpu.isalist" value="amd64" />
@@ -498,8 +498,8 @@
     <property name="junit.forkmode" value="perTest" />
     <property name="libs.javaee-endorsed-api-6.0.classpath" value="C:\Program Files\NetBeans-12.3\netbeans\enterprise\modules\ext\javaee6-endorsed\javax.annotation.jar;C:\Program Files\NetBeans-12.3\netbeans\enterprise\modules\ext\javaee6-endorsed\jaxb-api-osgi.jar;C:\Program Files\NetBeans-12.3\netbeans\enterprise\modules\ext\javaee6-endorsed\webservices-api-osgi.jar" />
   </properties>
-  <testcase classname="controller.LoginControllerTest" name="testLogin" time="0.002" />
-  <testcase classname="controller.LoginControllerTest" name="testExit" time="0.0" />
+  <testcase classname="controller.LoginControllerTest" name="testLogin" time="0.008" />
+  <testcase classname="controller.LoginControllerTest" name="testExit" time="0.001" />
   <testcase classname="controller.LoginControllerTest" name="testInitialize" time="0.001" />
   <system-out><![CDATA[login
 exit
